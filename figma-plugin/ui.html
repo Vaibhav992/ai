@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #2c2c2c;
+      color: white;
+    }
+    
+    .container {
+      max-width: 360px;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    
+    .logo {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #a855f7, #ec4899, #3b82f6);
+      border-radius: 12px;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .logo svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+    }
+    
+    h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .subtitle {
+      font-size: 12px;
+      color: #a0a0a0;
+      margin: 0;
+    }
+    
+    .instructions {
+      background: #3a3a3a;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      border-left: 3px solid #a855f7;
+    }
+    
+    .instructions h3 {
+      font-size: 14px;
+      margin: 0 0 8px 0;
+      color: #e0e0e0;
+    }
+    
+    .instructions ol {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 12px;
+      color: #c0c0c0;
+      line-height: 1.4;
+    }
+    
+    .export-button {
+      width: 100%;
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      border: none;
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .export-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    }
+    
+    .export-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .status {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      text-align: center;
+    }
+    
+    .status.success {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #22c55e;
+    }
+    
+    .status.error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #ef4444;
+    }
+    
+    .status.loading {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #3b82f6;
+    }
+    
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-top: 2px solid currentColor;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .features {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #888;
+      line-height: 1.4;
+    }
+    
+    .features ul {
+      margin: 8px 0 0 0;
+      padding-left: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </div>
+      <h1>Vaibhav AI</h1>
+      <p class="subtitle">Website Builder</p>
+    </div>
+    
+    <div class="instructions">
+      <h3>How to export your design:</h3>
+      <ol>
+        <li>Select the frames or components you want to export</li>
+        <li>Click the "Export to Website Builder" button below</li>
+        <li>Your design will be sent to the AI website builder</li>
+        <li>Continue customizing in the web interface</li>
+      </ol>
+    </div>
+    
+    <button id="exportBtn" class="export-button">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7,10 12,15 17,10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Export to Website Builder
+    </button>
+    
+    <div id="status" class="status" style="display: none;"></div>
+    
+    <div class="features">
+      <strong>What gets exported:</strong>
+      <ul>
+        <li>Layout structure and positioning</li>
+        <li>Colors, typography, and effects</li>
+        <li>Text content and styling</li>
+        <li>Images and vector graphics</li>
+        <li>Component hierarchy</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const exportBtn = document.getElementById('exportBtn');
+    const status = document.getElementById('status');
+    
+    exportBtn.addEventListener('click', async () => {
+      exportBtn.disabled = true;
+      exportBtn.innerHTML = '<div class="spinner"></div> Exporting...';
+      
+      showStatus('Exporting your design...', 'loading');
+      
+      // Send message to the plugin code
+      parent.postMessage({ pluginMessage: { type: 'export-design' } }, '*');
+    });
+    
+    // Listen for messages from the plugin code
+    window.onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+      
+      if (!msg) return;
+      
+      if (msg.type === 'success') {
+        showStatus('Design exported successfully! 🎉', 'success');
+        exportBtn.innerHTML = '✓ Exported Successfully';
+        setTimeout(() => {
+          exportBtn.disabled = false;
+          exportBtn.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7,10 12,15 17,10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export to Website Builder
+          `;
+          hideStatus();
+        }, 3000);
+      } else if (msg.type === 'error') {
+        showStatus(msg.message, 'error');
+        exportBtn.disabled = false;
+        exportBtn.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7,10 12,15 17,10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Export to Website Builder
+        `;
+      }
+    };
+    
+    function showStatus(message, type) {
+      status.textContent = message;
+      status.className = `status ${type}`;
+      status.style.display = 'block';
+    }
+    
+    function hideStatus() {
+      status.style.display = 'none';
+    }
+  </script>
+</body>
+</html> 
